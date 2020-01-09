@@ -6,7 +6,7 @@
 #    By: rreedy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/22 00:24:06 by rreedy            #+#    #+#              #
-#    Updated: 2019/04/22 00:24:11 by rreedy           ###   ########.fr        #
+#    Updated: 2020/01/09 06:12:46 by rreedy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ OBJS := $(patsubst %.c,%.o,$(wildcard $(DIR)/*.c))
 .PHONY: $(NAME) start stop clean
 
 $(NAME): start $(OBJS) stop
-
 
 start:
 	@ printf "$(COMPILE_COLOR)Compiling $(NAME_COLOR)$(NAME) $(DOTS_COLOR)"

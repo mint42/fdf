@@ -6,43 +6,47 @@
 #    By: rreedy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/13 11:34:50 by rreedy            #+#    #+#              #
-#    Updated: 2019/07/13 12:23:51 by rreedy           ###   ########.fr        #
+#    Updated: 2020/01/09 05:52:30 by rreedy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FDF := fdf
-LIB := lib/libft.a
-MLX := mlx/libmlx.a
+include config.mk 
 
-FDF_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/*.c))
+SRCS := $(foreach src_dir, $(SRC_DIRS), $(wildcard $(src_dir)/*.c))
+OBJS := $(patsubst %.c,%.o,$(SRCS))
+DEPS := $(patsubst %.c,%.d,$(SRCS))
 
-CC := gcc
-INCLUDES := -I./includes -I./lib/includes -I./lib/includes/ft_printf -I./mlx
-CFLAGS += -g -Wall -Wextra -Werror $(INCLUDES)
-LFLAGS += -L./lib -lft -L./mlx -lmlx
+LIBFT := $(LIBFT_DIR)/$(LIBFT_NAME)
+MAKE_LIBFT := make -C $(LIBFT_DIR) -f $(LIBFT_MAKEFILE) --no-print-directory
+
+LIBMLX := $(LIBMLX_DIR)/$(LIBMLX_NAME)
+MAKE_LIBMLX := make -C $(LIBMLX_DIR) -f $(LIBMLX_MAKEFILE) --no-print-directory
 
 .PHONY: all clean fclean re name
 
-all: name
+all: $(NAME)
 
-name: $(FDF)
+$(NAME): $(LIBMLX) $(LIBFT) $(OBJS) Makefile config.mk
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)
 
-$(FDF): $(MLX) $(LIB) $(FDF_OBJS)
-	$(CC) $(CFLAGS) $(FDF_OBJS) -o $(FDF) $(LFLAGS) -framework OpenGL -framework Appkit
+%.o: %.c
+	$(CC) $(CFLAGS) -MMD -MT $@ -c $< -o $@
 
-$(LIB):
-	@- make -C lib/ all
+-include $(DEPS)
 
-$(MLX):
-	@- make -C mlx/ all
+$(LIBMLX):
+	@- $(MAKE_LIBMLX) all
+
+$(LIBFT):
+	@- $(MAKE_LIBFT) all
 
 clean:
-	@- $(RM) $(FDF_OBJS)
-	@- make -C lib/ clean
-	@- make -C mlx/ clean
+	@- $(RM) $(OBJS)
+	@- $(MAKE_LIBMLX) clean
+	@- $(MAKE_LIBFT) clean
 
 fclean: clean
-	@- $(RM) $(FDF)
-	@- make -C lib/ fclean
+	@- $(RM) $(NAME)
+	@- $(MAKE_LIBFT) fclean
 
 re: fclean all
