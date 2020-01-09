@@ -6,18 +6,17 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 18:25:32 by rreedy            #+#    #+#             */
-/*   Updated: 2019/07/17 18:31:04 by rreedy           ###   ########.fr       */
+/*   Updated: 2020/01/09 02:53:34 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-typedef struct		s_identifiers
+struct			s_identifiers
 {
-	void			*connection;
-	void			*window;
-}					t_identifiers;
+	void		*connection;
+	void		*window;
+};
 
 #endif
-
