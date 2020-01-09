@@ -1,6 +1,6 @@
 # FDF
 
-fdf is a graphics project in the 42 curriculum. It uses the minilibx (mlx for short) graphics library to introduce the concepts of window drawing, and keyboard managment in graphical environment. The goal of this project is to parse a file with 3-D coordinates to create 2 different wireframe projections of that file.
+fdf is a graphics project in the 42 curriculum. It uses the minilibx (mlx for short) graphics library to introduce the concepts of window drawing, and event managment in graphical environment. The goal of this project is to parse a file with 3-D coordinates to create 2 different wireframe projections of that file.
 
 ## Getting Started
 
