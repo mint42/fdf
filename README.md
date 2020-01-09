@@ -1,6 +1,6 @@
 # FDF
 
-fdf is a graphics project in the 42 curriculum. It uses the minilibx (mlx for short) graphics library to introduce the concepts of window drawing, and keyboard managment in graphical environment. The goal of this project is to parse a file with 3-D coordinates to create a 2 different wireframe projections of that file.
+fdf is a graphics project in the 42 curriculum. It uses the minilibx (mlx for short) graphics library to introduce the concepts of window drawing, and keyboard managment in graphical environment. The goal of this project is to parse a file with 3-D coordinates to create 2 different wireframe projections of that file.
 
 ## Getting Started
 
@@ -10,7 +10,7 @@ fdf uses [my 42 library](https://github.com/mint42/lib) which has been included 
 usage: ./fdf file
 ```
 
-The file referenced is the input file for the program. It can be any size, and should be laid out in this format:
+The file referenced is the input file for the program. It can be any size or shape, but should be laid out in this format:
 
 ```
 cat -e file
@@ -28,6 +28,7 @@ cat -e file
 - The value corresponds to its altitude.
 - White space does not need to be aligned.
 - All consecutive whitespace will be treated as one space.
+- The image will be left-justified, regardless of leading space.
 - All valid integers will be accepted as values.
 
 ## Features (in progress)
